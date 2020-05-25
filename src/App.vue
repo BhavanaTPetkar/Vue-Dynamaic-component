@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button style ="background-color: green" @click="selectedComponent = 'appGreen'">Green</button>
+    <button style ="background-color: red" @click="selectedComponent = 'appRed'">Red</button>
+    <button style ="background-color: blue"  @click="selectedComponent = 'appBlue'">Blue</button>
+    <component :is= "selectedComponent"><p>This is content</p></component>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Blue from "./components/Blue.vue";
+import Green from "./components/Green.vue";
+import Red from "./components/Red.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    appGreen: Green,
+    appRed: Red,
+    appBlue: Blue
+  },
+  data: function() {
+    return {
+      selectedComponent: "appGreen"
+    };
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+button {
+  border: 1px solid white;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 8px;
 }
 </style>
